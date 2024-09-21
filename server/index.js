@@ -1,6 +1,9 @@
 const express = require('express'); 
 const app = express();
+const cors = require('cors');
+
 app.use(express.json());
+app.use(cors());
 
 const db = require('./models');
 
@@ -13,8 +16,8 @@ app.use("/docs", docRouter);
 db.sequelize.sync().then( () => {
 
     //Entrypoint of API
-    app.listen(3000, () => {
-        console.log("Server listening on port 3000");
+    app.listen(3001, () => {
+        console.log("Server listening on port 3001");
     });
 });
 
