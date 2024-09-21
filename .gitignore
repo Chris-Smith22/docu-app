@@ -1,0 +1,9 @@
+#Personal:
+notes.md
+plan.md
+
+#Auto created:
+server/config/config.json
+server/node_modules
+server/package-lock.json
+server/migrations
