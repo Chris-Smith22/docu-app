@@ -1,14 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const { Docs } = require("../models"); //instance of docs model
 
-router.get('/', (req, res) => {
-    res.send("Hello World!");
+router.get('/', async (req, res) => {
+    const listOfDocs = await Docs.findAll();  //iterate thru table
+    res.json(listOfDocs);
 });
 
-router.post("/", (req, res) => {
+//Inserting data into DB:
+router.post("/", async (req, res) => {
     const doc = req.body;
-
-    doc.title
+    await Docs.create(doc);            //wait for data to be inserted into DB
+    
+    res.json(doc);
+    
 });
 
 
