@@ -9,8 +9,8 @@ function Home() {
         axios.get("http://localhost:3001/docs").then( (response) => {
         const formattedDocs = response.data.map(doc => {
             //Format createdAt field in db
-            const formattedDate = new Date(doc.createdAt).toLocaleDateString('en-GB');
-            return {...doc, createdAt: formattedDate}; 
+            const formattedCreateDate = new Date(doc.createdAt).toLocaleDateString('en-GB');
+            return {...doc, createdAt: formattedCreateDate}; 
             //copy all key-value pairs into new formattedDocs obj, updating createdAt field
         })
         setListOfDocs(formattedDocs);
@@ -20,21 +20,28 @@ function Home() {
 
     return (
     <div className="Home">
-        {
-        listOfDocs.map( (value, key) => { 
-        return (
-        <div className='doc' key={key}> 
-            <div className='title'> {value.title} </div> 
-            <div className='body'> {value.text} </div>
-        
-            <div className='footer'> 
+
+        <div className='listHeader'> 
+            <h3 className='Title'>Title</h3>
+            <h3 className='Author'>Author</h3>
+            <h3 className='dateCreated'>Date Created</h3>
+        </div>
+
+        <div className='docsList'>
+            {
+            listOfDocs.map( (value, key) => { 
+            return (
+            <div className='doc' key={key}> 
+                <div className='title'> {value.title} </div> 
+                
                 <div className='author'> {value.author} </div>
                 <div className='dateCreated'> {value.createdAt} </div>
-            </div> 
+                
 
-        </div>) //return doc.
-        })
-        }
+            </div>) //return doc.
+            })
+            }
+        </div>
       
     </div>
     );

@@ -5,8 +5,10 @@ import Write from "./pages/write"
 
 
 
+
 function App() {
   return <div className="App"> 
+    <div className='Header'></div>
     <Router>
       <Link to="/createdoc"> Write a New Document</Link>
       <Link to="/"> Home </Link>
