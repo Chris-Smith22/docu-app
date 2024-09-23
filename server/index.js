@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-app.use(express.json());
+app.use(express.json({limit: '2mb' }));
 app.use(cors());
 
 const db = require('./models');

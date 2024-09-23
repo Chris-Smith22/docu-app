@@ -1,9 +1,14 @@
 #Personal:
 notes.md
 plan.md
+.DS_Store
+client/src/App.test.js
 
 #Auto created:
 server/config/config.json
 server/node_modules
 server/package-lock.json
 server/migrations
+
+#Private:
+docker-compose.yml

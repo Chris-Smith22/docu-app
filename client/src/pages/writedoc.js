@@ -47,7 +47,7 @@ function Write() {
 
                 <label> Text: </label>
                 <ErrorMessage name="text" component="span" />
-                <Field
+                <Field as="textarea" className="textbox"
                     id="inputCreateDoc"
                     name="text"
                     placeholder="Write something..."
