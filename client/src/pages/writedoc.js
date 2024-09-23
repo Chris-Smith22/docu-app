@@ -3,10 +3,11 @@ import '../App.css';
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import * as Yup from 'yup'
 import axios from 'axios';
-import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 function Write() {
+    let navigate = useNavigate();
 
     const initialValues = {
         title: "",
@@ -17,13 +18,13 @@ function Write() {
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("A title for your document is required."),
         text: Yup.string(),
-        author: Yup.string().max(15).required("An author of at least 15 characters is required.")
+        author: Yup.string().max(15).required("An author of at most 15 characters is required.")
     });
 
 
     const onSubmit = (data) => {
         axios.post("http://localhost:3001/docs", data).then( (response) => {
-            console.log("It worked");
+            navigate('/');
         });
     };
 
@@ -41,6 +42,7 @@ function Write() {
                     id="inputCreateDoc" 
                     name="title" 
                     placeholder="Title"
+                    autocomplete="off"
                 />
 
                 <label> Text: </label>
@@ -49,6 +51,7 @@ function Write() {
                     id="inputCreateDoc"
                     name="text"
                     placeholder="Write something..."
+                    autocomplete="off"
                 />
 
                 <label> Author: </label>
@@ -57,6 +60,7 @@ function Write() {
                     id="inputCreateDoc"
                     name="author"
                     placeholder="Name"
+                    autocomplete="off"
                 />
 
                 <button type="submit"> Create Document </button>

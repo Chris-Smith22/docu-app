@@ -1,9 +1,11 @@
 import React from 'react'
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 function Home() {
     const [listOfDocs, setListOfDocs] = useState([]);
+    let navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:3001/docs").then( (response) => {
@@ -30,8 +32,13 @@ function Home() {
         <div className='docsList'>
             {
             listOfDocs.map( (value, key) => { 
+            
+            
             return (
-            <div className='doc' key={key}> 
+            <div 
+                className='doc' 
+                key={key}
+                onClick={() => navigate(`/viewdoc/${value.id}`)}> 
                 <div className='title'> {value.title} </div> 
                 
                 <div className='author'> {value.author} </div>
